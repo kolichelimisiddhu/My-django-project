@@ -21,7 +21,8 @@ from Websites import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('welcome-page/',views.render_page),
-    path('welcome-page/<nextpage>',views.next_page)
+    path('',views.render_page),
+    # path('welcome-page/',views.render_page),
+    # path('welcome-page/<nextpage>',views.next_page)
 
 ]

@@ -1,14 +1,15 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def render_page(request):
-    return HttpResponse("<b>hello you are on the page where i have created </b>")
+    data={
+            'login':'Login Page',
+            'welcome':'Welcome to the login page',
+            'names':["siddhu","shiva","achyut","eswar","hemalath","yadaiah",],
+            'details':[{'name':'siddhu','id':'71375'}, {'name':'shiva','id':'71388'}]
+          }
+    return render(request,"login.html",data)
 
-def next_page(request,nextpage):
-    displayed_text= ""
-    if nextpage=="hello":
-        displayed_text="<b> this is hello which is been used to test dynamic routes</b>"
-    elif nextpage=="2":
-        displayed_text="<b>this is the 2nd dynamic routpage </b>"
-    return HttpResponse(displayed_text)
+
 
 
