@@ -52,9 +52,12 @@
     <div class="container">
         <h2>Login</h2>
 
-        {% if form.errors %}
-            <div class="error">Invalid credentials</div>
+       {% if messages %}
+            {% for message in messages %}
+                <div class="error">{{ message }}</div>
+            {% endfor %}
         {% endif %}
+
 
         <form method="POST">
             {% csrf_token %}
@@ -62,8 +65,12 @@
             <input type="password" name="password" placeholder="Password" required>
 
             <!-- This button will trigger JS -->
-            <button type="submit" id="loginBtn">Login</button>
+            <button type="submit" id="loginBtn">Login</button>          
         </form>
+        <p style="margin-top:10px; text-align:center;">
+            New here? <a href="{% url 'register' %}" style="color:#4da3ff;">Register</a>
+        </p>
+
     </div>
     <!-- Load your JS file -->
     <script src="{% static 'JS/validation.js' %}"></script>
