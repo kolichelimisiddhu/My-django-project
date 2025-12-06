@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body { background:black; color:white; font-family:Arial; }
+        .container {
+            width:300px; margin:80px auto; background:#222;
+            padding:20px; border-radius:8px;
+        }
+        input { width:100%; padding:10px; margin:8px 0; border:1px solid #444; border-radius:4px; }
+        button { width:100%; padding:10px; background:#28a745; color:white; border:none; }
+        button:hover { background:#1e7e34; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Register</h2>
+
+    <form method="POST" action="/homepage/">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password1" placeholder="Password" required>
+        <input type="password" name="password2" placeholder="Confirm Password" required>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p style="margin-top:10px; text-align:center;">
+        Already have an account?
+        <a href="{% url 'login' %}" style="color:#4da3ff;">Login</a>
+    </p>
+</div>
+
+</body>
+</html>
