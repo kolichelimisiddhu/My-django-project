@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Person Form</title>
+</head>
+<body>
+
+<h2>Add Person Details</h2>
+
+<form method="POST" action="/viewpage/">
+    {% csrf_token %}
+
+
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Place:</label><br>
+    <input type="text" name="place" required><br><br>
+
+    <label>Mobile Number:</label><br>
+    <input type="text" name="mobile" required><br><br>
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
