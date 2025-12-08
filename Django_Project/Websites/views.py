@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from mainapp.models import Busroutes
+
 
 def render_page(request):    
     if request.method == 'POST':
@@ -46,18 +48,26 @@ def register_page(request):
 def home_page_render(request):
     return render(request,"Homepage.html")
 
-def home_page_view(request):
-    context={}
-    if request.method=="POST":
-        name=request.POST.get("name")
-        place=request.POST.get("place")
-        mobile= request.POST.get("mobile")     
-        context = {
-            "name": name,
-            "place": place,
-            "mobile": mobile,
-        }
+
+
+def search_bus(request):
+    if request.method=='GET':
+        context={}
+        source=request.GET.get("bus_source")
+        destination=request.GET.get("bus_destination")
+        date=request.GET.get("bus_date")
+        print(source, destination, date)        
+        routes_details = Busroutes.objects.filter(bus_source=source, bus_destination=destination, bus_date=date)
         
+        context={
+            "routes_details": routes_details,
+            "source": source,
+            "destination": destination,
+            "date": date
+        }
+
     return render(request, "HomepageView.html", context)
+
+
     
 

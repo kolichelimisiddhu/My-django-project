@@ -1,25 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Person Form</title>
+    <meta charset="UTF-8">
+    <title>Available Buses</title>
 </head>
 <body>
 
-<h2>Add Person Details</h2>
+    <h2>Available Buses from {{ source }} to {{ destination }} on {{ date }}</h2>
 
-<form id="home_page_view" >
-     
-    <label>Name:</label><br>
-    <input type="text" name="name" value="{{ name }}" readonly><br><br>
+    <hr>
 
-    <label>Place:</label><br>
-    <input type="text" name="place" value="{{ place }}" readonly><br><br>
+    {% if routes_details %}
+        {% for route in routes_details %}
 
-    <label>Mobile Number:</label><br>
-    <input type="text" name="mobile" value="{{ mobile }}" readonly><br><br>
+            <div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
+                
+                <h3>{{ route.bus.bus_name }} ({{ route.bus.bus_number }})</h3>
 
-</form>
+                <p><strong>From:</strong> {{ route.bus_source }}</p>
+                <p><strong>To:</strong> {{ route.bus_destination }}</p>
+                <p><strong>Date:</strong> {{ route.bus_date }}</p>
 
+                <p>
+                    <strong>Departure:</strong> {{ route.bus_start_time }}  
+                    <strong>Arrival:</strong> {{ route.bus_arrival_time }}
+                </p>
+
+                <p><strong>Ticket Price:</strong> ₹{{ route.bus_ticket_price }}</p>
+
+                <!-- Select Seats Button -->
+                <a href="/select-seats/{{ route.id }}/">
+                    <button>Select Seats</button>
+                </a>
+
+            </div>
+
+        {% endfor %}
+    {% else %}
+        <p>No buses found for your search. Try different date or route.</p>
+    {% endif %}
 
 </body>
 </html>
